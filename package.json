@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "ctl2mimir-client",
   "version": "0.2.0",
   "private": true,
   "scripts": {

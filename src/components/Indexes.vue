@@ -1,8 +1,8 @@
 <template>
   <div v-if="loaded">
     <ul class="m-6">
-      <li v-for="user in users" :key="user.id" class="font-text">
-        {{ user.id }} - {{ user.username }}
+      <li v-for="index in indexes" :key="index.id" class="font-text">
+        {{ index.region }} - {{ index.status }}
       </li>
     </ul>
   </div>
@@ -15,7 +15,7 @@
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  name: 'Users',
+  name: 'Indexes',
   data () {
     return {
       loaded: false
@@ -23,16 +23,16 @@ export default {
   },
   computed: {
     ...mapGetters({
-      users: 'users/users'
+      indexes: 'indexes/indexes'
     })
   },
   methods: {
     ...mapActions({
-      loadUsers: 'users/loadUsers'
+      loadIndexes: 'indexes/loadIndexes'
     })
   },
   async created () {
-    await this.loadUsers()
+    await this.loadIndexes()
     this.loaded = true
   }
 }
