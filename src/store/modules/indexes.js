@@ -13,7 +13,15 @@ const getters = {
 }
 
 const mutations = {
-  updateIndexes: (state, indexes) => { state.indexes = indexes }
+  updateIndexes: (state, indexes) => { state.indexes = indexes },
+  updateIndexStatus: (state, { id, status }) => {
+    const i = state.indexes.findIndex(obj => obj.indexId === id)
+    if (i === -1) {
+      console.log('Cannot find index with id ' + id)
+    } else {
+      state.indexes[i].status = status
+    }
+  }
 }
 
 const actions = {
@@ -37,6 +45,14 @@ const actions = {
           return Promise.reject(response.data.errors[0])
         } else {
           const indexes = response.data.data.indexes.indexes
+          // Before storing the index, we have to do a turnwoopy
+          // to transmogrify the status, which is a serialized json object,
+          // into an actual object
+          indexes.map(index => {
+            const status = JSON.parse(index.status)
+            index.status = status
+            return index
+          })
           commit('updateIndexes', indexes)
           return Promise.resolve(response.data.data.indexes.indexes)
         }

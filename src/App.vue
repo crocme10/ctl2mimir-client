@@ -15,12 +15,16 @@
 <script>
 import Notifications from '@/components/Util/Notifications'
 import NavHeader from '@/components/NavHeader'
+import eventSource from '@/services/eventSource'
 
 export default {
   name: 'App',
   components: {
     NavHeader,
     Notifications
+  },
+  async created () {
+    eventSource.configure()
   }
 }
 </script>

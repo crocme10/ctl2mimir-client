@@ -9,8 +9,11 @@ class IndexService {
         indexes {
           indexId,
           indexType,
+          dataSource,
           region,
-          status
+          status,
+          createdAt,
+          updatedAt
         }
       }
     }`
