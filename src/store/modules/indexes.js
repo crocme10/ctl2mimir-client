@@ -14,6 +14,7 @@ const getters = {
 
 const mutations = {
   updateIndexes: (state, indexes) => { state.indexes = indexes },
+  appendIndex: (state, index) => { state.indexes.push(index) },
   updateIndexStatus: (state, { id, status }) => {
     const i = state.indexes.findIndex(obj => obj.indexId === id)
     if (i === -1) {
@@ -54,11 +55,40 @@ const actions = {
             return index
           })
           commit('updateIndexes', indexes)
-          return Promise.resolve(response.data.data.indexes.indexes)
+          return Promise.resolve(indexes)
         }
       },
       error => {
         console.log('Server error listing indexes: ' + error)
+        return Promise.reject(error)
+      }
+    )
+  },
+  createIndex: async ({ dispatch, commit }, { indexType, dataSource, region }) => {
+    // console.log('VUE APP: ' + process.env.VUE_APP_BASE_URL)
+    return IndexService.createIndex({ indexType, dataSource, region }).then(
+      response => {
+        if (response.data.errors) {
+          const errmsg = response.data.errors[0].message + ': ' + response.data.errors[0].extensions.internal_error
+          console.log('Server error creating index: ' + errmsg)
+          dispatch('notifications/addNotification',
+            {
+              title: 'Server Error creating index',
+              message: errmsg,
+              theme: 'error',
+              timeout: 5000
+            },
+            { root: true }
+          )
+          return Promise.reject(response.data.errors[0])
+        } else {
+          const index = response.data.data.createIndex.index
+          commit('appendIndex', index)
+          return Promise.resolve(index)
+        }
+      },
+      error => {
+        console.log('Server error creating index: ' + error)
         return Promise.reject(error)
       }
     )
