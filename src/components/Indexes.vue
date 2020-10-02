@@ -51,7 +51,7 @@
               </td>
               <td class="border px-4 py-2 border border-gray-400 text-center">
                 <ValidationProvider rules='required' v-slot='{errors}'>
-                  <input v-model='region' name='region' class='font-code leading-tight text-xs' id='region' type='text' placeholder='region' size='10'/>
+                  <input v-model='region' name='region' id='region' type='text' placeholder='region' size='10'/>
                   <span class='text-red-500 text-xs italic'>{{ errors[0] }}</span>
                 </ValidationProvider>
               </td>
@@ -105,10 +105,10 @@ export default {
       dataSource: '',
       region: '',
       indexTypeOptions: [
-        { value: 'admin' },
-        { value: 'street' },
-        { value: 'poi' },
-        { value: 'address' }
+        { value: 'admins' },
+        { value: 'streets' },
+        { value: 'pois' },
+        { value: 'addresses' }
       ],
       dataSourceOptions: [
         { value: 'bano' },

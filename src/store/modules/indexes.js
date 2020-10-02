@@ -27,7 +27,6 @@ const mutations = {
 
 const actions = {
   loadIndexes: async ({ dispatch, commit }) => {
-    // console.log('VUE APP: ' + process.env.VUE_APP_BASE_URL)
     return IndexService.getIndexList().then(
       response => {
         if (response.data.errors) {
@@ -50,6 +49,7 @@ const actions = {
           // to transmogrify the status, which is a serialized json object,
           // into an actual object
           indexes.map(index => {
+            console.log(index.status)
             const status = JSON.parse(index.status)
             index.status = status
             return index
