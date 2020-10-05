@@ -5,6 +5,9 @@ import store from './store'
 
 import '@/assets/styles/index.css'
 
+import moment from 'moment'
+Vue.prototype.moment = moment
+
 Vue.config.productionTip = false
 
 new Vue({
