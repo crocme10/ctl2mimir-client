@@ -4,8 +4,9 @@ import store from '@/store'
 const eventSource = {
   connection: null,
   configure: function () {
-    console.log('connecting to ws://localhost:5000/subscriptions')
-    this.connection = new WebSocket('ws://localhost:5000/subscriptions')
+    const WebSocketBaseUrl = 'ws://' + process.env.VUE_APP_BASE_HOST + ':' + process.env.VUE_APP_BASE_PORT + '/subscriptions'
+    console.log(WebSocketBaseUrl)
+    this.connection = new WebSocket(WebSocketBaseUrl)
     this.connection.onerror = this.onError
     this.connection.onopen = this.onConnectionOpen
     this.connection.onmessage = this.onMessage

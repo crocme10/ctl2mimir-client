@@ -65,7 +65,6 @@ const actions = {
     )
   },
   createIndex: async ({ dispatch, commit }, { indexType, dataSource, region }) => {
-    // console.log('VUE APP: ' + process.env.VUE_APP_BASE_URL)
     return IndexService.createIndex({ indexType, dataSource, region }).then(
       response => {
         if (response.data.errors) {
