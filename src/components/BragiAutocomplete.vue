@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mb-8">
     <h3 class="text-center mt-8 font-header">Autocomplete</h3>
     <div class="mt-8 flex align-center justify-center">
       <div class="relative w-1/2">
