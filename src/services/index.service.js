@@ -53,7 +53,7 @@ class IndexService {
     return axios({
       method: 'post',
       headers: standardHeaders(),
-      url: ApiRoutes.GraphQL,
+      url: ApiRoutes.MimirGraphQL,
       data: JSON.stringify({
         query,
         variables

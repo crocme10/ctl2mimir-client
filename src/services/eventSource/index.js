@@ -4,7 +4,7 @@ import store from '@/store'
 const eventSource = {
   connection: null,
   configure: function () {
-    const WebSocketBaseUrl = 'ws://' + process.env.VUE_APP_MIMIR_HOST + ':' + process.env.VUE_APP_MIMIR_PORT + '/subscriptions'
+    const WebSocketBaseUrl = process.env.VUE_APP_MIMIR_WEBSOCKET
     console.log(WebSocketBaseUrl)
     this.connection = new WebSocket(WebSocketBaseUrl)
     this.connection.onerror = this.onError
