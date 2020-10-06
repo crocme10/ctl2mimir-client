@@ -1,6 +1,6 @@
 {
-  "name": "ctl2mimir-client",
-  "version": "0.2.0",
+  "name": "mimirsenv-client",
+  "version": "0.4.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
