@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <NavHeader />
-    <div class="flex h-screen">
+    <div class="flex">
       <div class="w-1/12"></div>
       <div class="w-10/12 bg-gray-200">
         <router-view/>
